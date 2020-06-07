@@ -55,6 +55,8 @@ class db_connection{
 
 			error_management::error_table($e->getTrace(), $e->getCode());
 
+			exit();
+
 		}
 
 	}

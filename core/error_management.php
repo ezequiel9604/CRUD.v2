@@ -85,7 +85,7 @@ class error_management{
 		if ($code=="2002") {
 			echo "<tr>
 					<td><strong>DESCRIPTION: </strong></td>
-					<td class='Merror'>SOMETHING WRONG WITH THE DNS!</td>
+					<td class='Merror'>CONECTION TO DB FAILED!</td>
 				</tr>";
 		}
 
@@ -103,6 +103,7 @@ class error_management{
 					<td class='Merror'>SOMETHING WRONG WITH QUERY!</td>
 				</tr>";	
 		}
+
 
 		echo "</table>";
 

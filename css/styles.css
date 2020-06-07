@@ -72,13 +72,13 @@ div.finder-results table{
 	font-family: sans-serif;
 }
 
-div.finder-results table, th{
+div.finder-results table th{
 	border: 1px solid #ccc;
 	padding: 5px 5px;
-	font-size: 16px;
+	font-size: 14px;
 }
 
-div.finder-results table, th, tr, td{
+div.finder-results table td{
 	border: 1px solid #ccc;
 	padding: 5px 5px;
 	font-size: 14px;
@@ -218,4 +218,51 @@ div.select-db select{
 
 div.select-db select option{
 	outline-width: 0;
+}
+
+
+form#insert{
+	border:1px solid #ccc;
+	width: 500px;
+	margin: 20px auto;
+	padding: 10px;
+}
+
+form#insert table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+form#insert table th{
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 20px 0;
+}
+
+form#insert table td label{
+	width: 90%;
+	display: inline-block;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: right;	
+}
+
+form#insert table td input{
+	font-family: sans-serif;
+		border: 1px solid #ccc;
+	font-size: 16px;
+	outline-width: 0;
+	margin: 10px 0;
+	padding: 4px 0;
+}
+
+form#insert table td input[type='submit']{
+	width: 100%;
+	display: inline-block;
+	background-color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+	text-align: center;
 }

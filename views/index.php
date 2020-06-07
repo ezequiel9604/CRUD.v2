@@ -20,8 +20,8 @@ window.addEventListener("load", function (){document.getElementById("table").foc
 
 <form action="<?php echo $url->base_url('READ_controller/Read'); ?>" method="post" class="finder-form">
 	
-	<input type="text" name="table" autocomplete="off" id="table" />
-	<input type="submit" value="Buscar" />
+	<input type="text" name="table" autocomplete="off" id="table" placeholder="table name..." />
+	<input type="submit" value="Search" />
 
 <?php 
 
