@@ -188,6 +188,32 @@ class querys extends db_connection{
 
 	}
 
+	public function select_one2($key, $value, $table) {
+		
+		try {
+
+			$sql= "SELECT * FROM $table WHERE $key = ?;";
+
+			$this->resultset= $this->link->prepare($sql);
+
+			$this->resultset->bindParam(1, $value, PDO::PARAM_STR);
+
+			$this->resultset->execute();
+
+			return true;
+			
+		} catch (Exception $e) {
+			
+			require_once("error_management.php");
+
+			error_management::error_table($e->getTrace(), $e->getCode());
+
+			return false;
+
+		}
+
+	}
+
 
 	public function insert_into_all($keys, $values, $table) {
 
@@ -225,13 +251,55 @@ class querys extends db_connection{
 
 			error_management::error_table($e->getTrace(), $e->getCode());
 
-			var_dump($e->getMessage());
-
 			return false;
 
 		}
 
 	}	
+
+
+	public function update_into_all($keys, $values, $table) {
+		
+
+		$sql= "UPDATE $table SET ";
+
+		for ($i=1; $i < count($keys); $i++) { 
+
+			if ($i == count($keys)-1) {
+				$sql = $sql . $keys[$i] . " = ? ";
+				break;
+			}
+			
+			$sql =  $sql . $keys[$i] . " = ? , ";
+
+		}
+
+		$sql = $sql . " WHERE " . $keys[0] . " = '" .$values[0] . "' ;";
+
+		try {
+
+			$this->resultset= $this->link->prepare($sql);
+
+			for ($i=1; $i < 6; $i++) { 
+				$this->resultset->bindParam($i, $values[$i]);
+			}
+
+			$this->resultset->execute();
+
+			return true;
+
+		 	
+		 } catch (Exception $e) {
+		 	
+		 	require_once("error_management.php");
+
+			error_management::error_table($e->getTrace(), $e->getCode());
+
+			return false;
+
+		 } 
+
+	}
 
 }
 

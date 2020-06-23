@@ -18,7 +18,6 @@ echo "
 
 <style>
 
-
 p.error{
 	font-family: sans-serif;
 	font-size: 18;
@@ -56,7 +55,6 @@ p.saved{
 
 	public function Insert() {
 		
-		// TODO: programming here INSERT code
 		session_start();
 		
 		$existdb= $this->models['INSERT_model']->change_database_name($_SESSION['DBNAME']);
@@ -120,5 +118,49 @@ p.saved{
 	
 	}
 
+
+	public function Update($post) {
+		
+		session_start();
+		$value= $post['cedula'];
+
+
+	$result= $this->models['INSERT_model']->exist_register2('cedula', $value, $_SESSION['TABLE']);
+
+
+		if (!is_null($result)) {
+			
+			$meta= array_keys($result[0]); // returns key names
+
+			$values=  array_values($result[0]); // returns index array values
+
+			$this->load_view("update_data.php", $values, $meta);
+
+		}
+
+	}
+
+	public function Updated($post) {
+
+		$array_index= array_values($post);
+		$array_key= array_keys($post);
+
+		session_start();
+
+		$saved= $this->models['INSERT_model']->update_data_table($array_key, $array_index, $_SESSION['TABLE']);
+
+		if ($saved) {
+
+			echo "<p class='saved'>Info updated in database.
+				<a href='".$_SERVER['PHP_SELF']."'>Go back!</a>.</p>";
+			
+		}
+		else{
+			echo "<p class='error'>Error occured info has not been updated.
+				<a href='".$_SERVER['PHP_SELF']."'>Go back!</a>.</p>";
+		}
+
+		
+	}
 
 }

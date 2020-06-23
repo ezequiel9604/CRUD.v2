@@ -266,3 +266,8 @@ form#insert table td input[type='submit']{
 	font-weight: bold;
 	text-align: center;
 }
+
+form#insert table td input.input_disabled{
+	background-color: #ddd;
+	color: gray; 
+}

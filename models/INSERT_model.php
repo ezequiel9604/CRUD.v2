@@ -66,6 +66,23 @@ class INSERT_model extends model_base {
 
 	}
 
+	public function exist_register2($key, $value, $table) { # check if register exists
+
+		$rs= $this->query->select_one2($key, $value, $table);
+
+		if ($rs) {
+			
+			$result= $this->query->get_query_results("array");
+
+			return $result;
+		}
+		else{
+
+			return null;
+		}
+
+	}
+
 
 	public function insert_data_table($keys, $values, $table) { # insert a new register
 		
@@ -79,6 +96,22 @@ class INSERT_model extends model_base {
 		}
 
 	}
+
+
+	public function update_data_table($keys, $values, $table){
+
+		$this->query->update_into_all($keys, $values, $table);
+
+		if ($this->query->rows_affected() > 0) {
+			
+			return true;
+		}
+		else{
+			return false;
+		}
+
+	}
+
 
 }
 

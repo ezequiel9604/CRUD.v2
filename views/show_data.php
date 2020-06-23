@@ -31,17 +31,27 @@
 		
 		for ($i=0; $i < count($data); $i++) { 
 			
-			echo "<tr>";
+			echo "<tr> <form action='index.php?/INSERT_controller/Update' method='post'>";
 
 			for ($j=0; $j < count($data[$i]); $j++) { 
 				
-				echo "<td>" . $data[$i][$j] . "</td>";
+				
+				/*echo "<td>" . $data[$i][$j] . "</td>";*/
+
+				if ($j == 0) {
+					
+					echo "<td> <input type='text' name='cedula' 
+					value='" . $data[$i][$j] . "'  /> </td>";
+				}
+				else{
+					echo "<td>" . $data[$i][$j] . "</td>";
+				}
 
 			}
 
-			echo "<td class='action-btn'> <a href='#' class='btn-update'>Update</a> &nbsp; <a href='#' class='btn-delete'>Delete</a></td>";
+		echo "<td class='action-btn'> <input type='submit' value='Update' class='btn-update'/> &nbsp; <a href='index.php?/INSERT_controller/Delete' class='btn-delete'>Delete</a></td>";
 
-			echo "</tr>";
+			echo "</form></tr>";
 
 		}
 
