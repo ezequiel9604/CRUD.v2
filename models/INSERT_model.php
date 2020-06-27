@@ -112,6 +112,18 @@ class INSERT_model extends model_base {
 
 	}
 
+	public function delete_data($table, $condition){
+
+		$this->query->delete_register($table, $condition);
+
+		if ($this->query->rows_affected() > 0) {
+			return true;
+		}
+
+		return false;
+
+	}
+
 
 }
 

@@ -31,7 +31,7 @@
 		
 		for ($i=0; $i < count($data); $i++) { 
 			
-			echo "<tr> <form action='index.php?/INSERT_controller/Update' method='post'>";
+			echo "<tr> <form action='index.php?/INSERT_controller/UpdateAndDelete' method='post'>";
 
 			for ($j=0; $j < count($data[$i]); $j++) { 
 				
@@ -41,7 +41,7 @@
 				if ($j == 0) {
 					
 					echo "<td> <input type='text' name='cedula' 
-					value='" . $data[$i][$j] . "'  /> </td>";
+					value='" . $data[$i][$j] . "'  class='identifier' /> </td>";
 				}
 				else{
 					echo "<td>" . $data[$i][$j] . "</td>";
@@ -49,7 +49,7 @@
 
 			}
 
-		echo "<td class='action-btn'> <input type='submit' value='Update' class='btn-update'/> &nbsp; <a href='index.php?/INSERT_controller/Delete' class='btn-delete'>Delete</a></td>";
+		echo "<td class='action-btn'> <input type='submit' value='update' name='action' class='btn-update'/> &nbsp;<input type='submit' value='delete' name='action' class='btn-delete'/></td>";
 
 			echo "</form></tr>";
 

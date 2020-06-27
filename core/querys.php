@@ -301,6 +301,35 @@ class querys extends db_connection{
 
 	}
 
+
+	public function delete_register($table, $condition) {
+		
+		try{
+
+			$sql= "DELETE FROM $table WHERE cedula= ?";
+
+			$this->resultset= $this->link->prepare($sql);
+
+			$this->resultset->bindParam(1, $condition, PDO::PARAM_STR);
+
+			$this->resultset->execute();
+
+			return true;
+
+
+		}catch(Exception $e){
+
+			
+			require_once("error_management.php");
+
+			error_management::error_table($e->getTrace(), $e->getCode());
+
+			return false;
+			
+		}
+
+	}
+
 }
 
 

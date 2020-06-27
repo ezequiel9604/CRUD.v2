@@ -119,24 +119,43 @@ p.saved{
 	}
 
 
-	public function Update($post) {
+	public function UpdateAndDelete($post) {
 		
 		session_start();
 		$value= $post['cedula'];
+		$action= $post['action'];
 
-
-	$result= $this->models['INSERT_model']->exist_register2('cedula', $value, $_SESSION['TABLE']);
-
-
-		if (!is_null($result)) {
+		if (strcmp($action, "update") == 0) { // if it udpates
 			
-			$meta= array_keys($result[0]); // returns key names
+			$result= $this->models['INSERT_model']->exist_register2('cedula', $value, $_SESSION['TABLE']);
 
-			$values=  array_values($result[0]); // returns index array values
 
-			$this->load_view("update_data.php", $values, $meta);
+			if (!is_null($result)) {
+				
+				$meta= array_keys($result[0]); // returns key names
+
+				$values=  array_values($result[0]); // returns index array values
+
+				$this->load_view("update_data.php", $values, $meta);
+
+			}	
 
 		}
+		elseif (strcmp($action, "delete") == 0) { // if it deletes
+			
+			$result= $this->models['INSERT_model']->delete_data($_SESSION['TABLE'], $value);
+
+			if ($result) {
+				echo "<p class='saved'>Info was delete.
+				<a href='".$_SERVER['PHP_SELF']."'>Go back!</a>";
+			}
+			else{
+				echo "<p class='error'>Error occured info has not been delete.
+				<a href='".$_SERVER['PHP_SELF']."'>Go back!</a>.</p>";
+			}
+
+		}
+
 
 	}
 
